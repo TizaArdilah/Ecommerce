@@ -1,0 +1,24 @@
+{% extends 'store/base.html' %} {% block content %}
+<section id="single-product" class="padding-large">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-6">
+        <img
+          src="{{ product.image.url }}"
+          alt="{{ product.name }}"
+          class="img-fluid"
+        />
+      </div>
+      <div class="col-md-6">
+        <h1>{{ product.name }}</h1>
+        <p>{{ product.description }}</p>
+        <p>Price: {{ product.price|floatformat:2 }} USD</p>
+        <form action="{% url 'add_to_cart' product.id %}" method="POST">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-dark">Add to Cart</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
